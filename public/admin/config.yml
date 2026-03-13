@@ -3,9 +3,14 @@ backend:
   repo: lautxon/indica
   branch: main
 
-media_folder: "public/images/uploads"
-public_folder: "/images/uploads"
+# URL base de tu sitio (importante para GitHub Pages)
+site_url: https://lautxon.github.io/indica/
 
+# Rutas de medios corregidas para subdirectorio
+media_folder: "public/images/uploads"
+public_folder: "/indica/images/uploads"
+
+# Colección de canciones
 collections:
   - name: "canciones"
     label: "🎵 Canciones"
