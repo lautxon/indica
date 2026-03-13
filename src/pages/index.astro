@@ -19,48 +19,70 @@ try {
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/indica/favicon.svg" />
     <title>Indica - Música Independiente</title>
+    <!-- Tailwind CDN con configuración explícita -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              slate: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569', 500: '#64748b', 400: '#94a3b8' },
+              purple: { 700: '#7e22ce', 600: '#9333ea', 500: '#a855f7', 400: '#c084fc' },
+              pink: { 700: '#be185d', 600: '#db2777', 500: '#ec4899' },
+              red: { 500: '#ef4444' }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body { background-color: #0f172a; color: white; font-family: system-ui, sans-serif; }
+      .gradient-text {
+        background: linear-gradient(to right, #c084fc, #ec4899, #ef4444);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
   </head>
-  <body class="bg-slate-900 text-white font-sans antialiased">
+  <body>
     
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
+    <main style="max-width: 896px; margin: 0 auto; padding: 2rem 1rem;">
       
       <!-- Header -->
-      <header class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 mb-4">
+      <header style="text-align: center; margin-bottom: 3rem;">
+        <h1 class="gradient-text" style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">
           Indica
         </h1>
-        <p class="text-slate-400 text-lg">Música independiente • Hecha con corazón</p>
+        <p style="color: #94a3b8; font-size: 1.125rem;">Música independiente • Hecha con corazón</p>
       </header>
 
-      {/* Lista de canciones - solo si hay posts */}
+      <!-- Lista de canciones -->
       {posts.length > 0 && (
-        <div class="grid gap-6 md:grid-cols-2">
+        <div style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
           {posts.map((post) => (
-            <article class="bg-slate-800/60 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-colors">
+            <article style="background: rgba(30, 41, 51, 0.6); backdrop-filter: blur(4px); border: 1px solid #334155; border-radius: 1rem; overflow: hidden; transition: border-color 0.3s;">
               
-              {/* Imagen */}
               {post.data.image && (
                 <img 
                   src={post.data.image} 
                   alt={post.data.title}
-                  class="w-full h-48 object-cover"
+                  style="width: 100%; height: 12rem; object-fit: cover;"
                 />
               )}
               
-              <div class="p-6">
-                <h2 class="text-xl font-bold mb-2 text-white">{post.data.title}</h2>
-                <p class="text-slate-400 text-sm mb-4">
+              <div style="padding: 1.5rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: white;">{post.data.title}</h2>
+                <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1rem;">
                   {new Date(post.data.date).toLocaleDateString('es-AR')}
                 </p>
                 
-                {/* Link simple sin SVG */}
                 {post.data.audio_url && (
                   <a 
                     href={post.data.audio_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 px-4 rounded-lg transition-all"
+                    style="display: inline-block; background: linear-gradient(to right, #9333ea, #db2777); color: white; font-weight: 600; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; transition: opacity 0.3s;"
                   >
                     ▶ Escuchar / Ver
                   </a>
@@ -71,22 +93,22 @@ try {
         </div>
       )}
 
-      {/* Estado vacío */}
+      <!-- Estado vacío -->
       {posts.length === 0 && (
-        <div class="text-center py-12 border-2 border-dashed border-slate-700 rounded-2xl">
-          <p class="text-slate-400 text-lg mb-4">🎸 Próximamente: Nuevo material musical</p>
-          <p class="text-slate-500 text-sm">
+        <div style="text-align: center; padding: 3rem; border: 2px dashed #334155; border-radius: 1rem;">
+          <p style="color: #94a3b8; font-size: 1.125rem; margin-bottom: 1rem;">🎸 Próximamente: Nuevo material musical</p>
+          <p style="color: #64748b; font-size: 0.875rem;">
             El músico subirá canciones desde el 
-            <a href="/indica/admin/" class="text-purple-400 hover:underline ml-1">
+            <a href="/indica/admin/" style="color: #c084fc; text-decoration: underline; margin-left: 0.25rem;">
               panel de administración
             </a>
           </p>
         </div>
       )}
 
-      {/* Footer */}
-      <footer class="mt-16 text-center text-slate-600 text-sm">
-        <a href="/indica/admin/" class="hover:text-purple-400 transition-colors">
+      <!-- Footer -->
+      <footer style="margin-top: 4rem; text-align: center; color: #475569; font-size: 0.875rem;">
+        <a href="/indica/admin/" style="color: #64748b; text-decoration: none; transition: color 0.3s;">
           Panel de administración →
         </a>
       </footer>
