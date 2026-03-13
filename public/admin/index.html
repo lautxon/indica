@@ -28,52 +28,11 @@
   </style>
 </head>
 <body>
-  <!-- Contenedor explícito para el CMS -->
   <div id="root">
     <div class="loading">Cargando panel...</div>
   </div>
   
-  <!-- Decap CMS -->
+  <!-- Decap CMS: se auto-inicializa con config.yml -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <!-- Configuración -->
-  <script>
-    // Esperar a que el DOM esté completamente cargado
-    document.addEventListener('DOMContentLoaded', function() {
-      // Verificar que CMS esté disponible
-      if (typeof window.CMS !== 'undefined') {
-        CMS.init({
-          config: {
-            backend: {
-              name: 'github',
-              repo: 'lautxon/indica',
-              branch: 'main'
-            },
-            site_url: 'https://lautxon.github.io/indica/',
-            display_url: 'https://lautxon.github.io/indica/',
-            media_folder: 'public/images/uploads',
-            public_folder: '/indica/images/uploads',
-            collections: [{
-              name: 'canciones',
-              label: '🎵 Canciones',
-              folder: 'src/content/canciones',
-              create: true,
-              slug: '{{slug}}',
-              fields: [
-                { label: 'Título', name: 'title', widget: 'string' },
-                { label: 'Portada', name: 'image', widget: 'image' },
-                { label: 'Link (Spotify/YouTube)', name: 'audio_url', widget: 'string' },
-                { label: 'Fecha', name: 'date', widget: 'datetime' },
-                { label: 'Descripción', name: 'body', widget: 'markdown' }
-              ]
-            }]
-          }
-        });
-      } else {
-        console.error('Decap CMS no se cargó correctamente');
-        document.getElementById('root').innerHTML = '<div class="loading">Error cargando el panel. Recarga la página.</div>';
-      }
-    });
-  </script>
 </body>
 </html>
