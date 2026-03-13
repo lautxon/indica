@@ -4,9 +4,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Músico - Indica</title>
+  <!-- Configurar ruta base para CMS -->
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Inicializar CMS con configuración explícita
+    const config = {
+      backend: {
+        name: 'github',
+        repo: 'lautxon/indica',
+        branch: 'main'
+      },
+      site_url: 'https://lautxon.github.io/indica/',
+      media_folder: 'public/images/uploads',
+      public_folder: '/indica/images/uploads',
+      collections: [{
+        name: 'canciones',
+        label: '🎵 Canciones',
+        folder: 'src/content/canciones',
+        create: true,
+        fields: [
+          { label: 'Título', name: 'title', widget: 'string' },
+          { label: 'Portada', name: 'image', widget: 'image' },
+          { label: 'Link', name: 'audio_url', widget: 'string' },
+          { label: 'Fecha', name: 'date', widget: 'datetime' },
+          { label: 'Descripción', name: 'body', widget: 'markdown' }
+        ]
+      }]
+    };
+    CMS.init({ config });
+  </script>
 </head>
 <body>
-  <!-- Decap CMS se renderiza aquí automáticamente -->
 </body>
 </html>
