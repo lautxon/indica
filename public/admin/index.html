@@ -4,41 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Músico - Indica</title>
-  
-  <!-- ⭐ CSP que permite Decap CMS en GitHub Pages -->
-  <meta http-equiv="Content-Security-Policy" 
-        content="default-src 'self'; 
-                 script-src 'self' 'unsafe-eval' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; 
-                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
-                 font-src 'self' https://fonts.gstatic.com; 
-                 img-src 'self' data: https:; 
-                 connect-src 'self' https://api.github.com https://lautxon.github.io;">
-  
-  <!-- Estilos base -->
+  <!-- CSP en UNA sola línea (sin saltos que rompan el parseo) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net https://api.github.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://api.github.com https://unpkg.com https://lautxon.github.io;">
   <style>
-    body {
-      margin: 0; padding: 0;
-      background-color: #ffffff;
-      color: #333333;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+    body { margin: 0; padding: 0; background: #fff; color: #333; font-family: system-ui, sans-serif; }
     #root { min-height: 100vh; }
-    .loading {
-      display: flex; justify-content: center; align-items: center;
-      min-height: 100vh; font-size: 1.25rem; color: #666;
-    }
+    .loading { display: flex; justify-content: center; align-items: center; min-height: 100vh; font-size: 1.25rem; color: #666; }
   </style>
-  
-  <!-- Flag para inicialización manual -->
   <script>window.CMS_MANUAL_INIT = true;</script>
 </head>
 <body>
   <div id="root"><div class="loading">Iniciando panel...</div></div>
-  
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <!-- Inicialización manual con GitHub -->
+  <!-- ⭐ Decap CMS v2.x (más compatible con GitHub Pages) -->
+  <script src="https://unpkg.com/decap-cms@^2.0.0/dist/decap-cms.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       if (window.CMS) {
@@ -47,8 +25,7 @@
             backend: {
               name: 'github',
               repo: 'lautxon/indica',
-              branch: 'main',
-              auth_scope: 'repo'
+              branch: 'main'
             },
             site_url: 'https://lautxon.github.io/indica/',
             display_url: 'https://lautxon.github.io/indica/',
