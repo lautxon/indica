@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: lautxon/indica
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "canciones"
+    label: "🎵 Canciones"
+    folder: "src/content/canciones"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título de la canción", name: "title", widget: "string"}
+      - {label: "Portada / Imagen", name: "image", widget: "image"}
+      - {label: "Link (Spotify / YouTube / SoundCloud)", name: "audio_url", widget: "string", hint: "Pega aquí el enlace público de tu canción"}
+      - {label: "Fecha de lanzamiento", name: "date", widget: "datetime"}
+      - {label: "Descripción / Letras", name: "body", widget: "markdown"}
