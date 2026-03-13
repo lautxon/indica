@@ -17,19 +17,31 @@
     #root {
       min-height: 100vh;
     }
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-size: 1.25rem;
+      color: #666;
+    }
   </style>
+</head>
+<body>
+  <!-- Contenedor explícito para el CMS -->
+  <div id="root">
+    <div class="loading">Cargando panel...</div>
+  </div>
   
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</head>
-<body>
-  <div id="root"></div>
   
-  <!-- Configuración del CMS -->
+  <!-- Configuración -->
   <script>
-    // Esperar a que el CMS esté disponible
-    window.onload = function() {
-      if (window.CMS) {
+    // Esperar a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      // Verificar que CMS esté disponible
+      if (typeof window.CMS !== 'undefined') {
         CMS.init({
           config: {
             backend: {
@@ -57,8 +69,11 @@
             }]
           }
         });
+      } else {
+        console.error('Decap CMS no se cargó correctamente');
+        document.getElementById('root').innerHTML = '<div class="loading">Error cargando el panel. Recarga la página.</div>';
       }
-    };
+    });
   </script>
 </body>
 </html>
