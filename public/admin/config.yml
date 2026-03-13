@@ -1,26 +1,10 @@
+# Este archivo se mantiene por compatibilidad, 
+# pero la config real está en index.html (load_config_file: false)
+
 backend:
   name: github
   repo: lautxon/indica
   branch: main
 
-# URL base de tu sitio (importante para GitHub Pages)
-site_url: https://lautxon.github.io/indica/
-display_url: https://lautxon.github.io/indica/
-
-# Rutas de medios corregidas para subdirectorio
 media_folder: "public/images/uploads"
 public_folder: "/indica/images/uploads"
-
-# Colección de canciones
-collections:
-  - name: "canciones"
-    label: "🎵 Canciones"
-    folder: "src/content/canciones"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Título de la canción", name: "title", widget: "string"}
-      - {label: "Portada / Imagen", name: "image", widget: "image"}
-      - {label: "Link (Spotify / YouTube / SoundCloud)", name: "audio_url", widget: "string", hint: "Pega aquí el enlace público de tu canción"}
-      - {label: "Fecha de lanzamiento", name: "date", widget: "datetime"}
-      - {label: "Descripción / Letras", name: "body", widget: "markdown"}
