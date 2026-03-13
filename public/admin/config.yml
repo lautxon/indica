@@ -1,10 +1,6 @@
-# Este archivo se mantiene por compatibilidad, 
-# pero la config real está en index.html (load_config_file: false)
-
 backend:
   name: github
   repo: lautxon/indica
   branch: main
-
 media_folder: "public/images/uploads"
 public_folder: "/indica/images/uploads"
